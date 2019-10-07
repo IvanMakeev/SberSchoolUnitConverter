@@ -10,6 +10,7 @@ import androidx.appcompat.app.AppCompatActivity
 import com.example.unitconverter.R
 import com.example.unitconverter.util.Conversion
 import com.example.unitconverter.util.Unit
+import com.example.unitconverter.util.Utils
 import kotlinx.android.synthetic.main.activity_converter.*
 
 class ConverterActivity : AppCompatActivity() {
@@ -29,6 +30,7 @@ class ConverterActivity : AppCompatActivity() {
         setContentView(R.layout.activity_converter)
 
         conversion = intent.getSerializableExtra(CONVERSION) as Conversion
+        Utils.setConversion(conversion)
         list = convertMethod(conversion.units)
         initSpinner()
         initEditText()
@@ -85,31 +87,15 @@ class ConverterActivity : AppCompatActivity() {
     }
 
     private fun updateScreen() {
-        in_convert_value.setText(calculate(parseInt).toString())
+        in_convert_value.setText(
+            Utils.calculate(
+                parseInt,
+                positionOutConversion,
+                positionInConversion
+            )
+                .toString()
+        )
     }
-
-    private fun calculate(enteredValue: Int): Double {
-        var resultValue: Double = enteredValue.toDouble()
-        val outConversion = conversion.units[positionOutConversion]
-        val inConversion = conversion.units[positionInConversion]
-
-        return when {
-            outConversion.priority > inConversion.priority -> {
-                resultValue *= outConversion.conversionBase
-                resultValue /= inConversion.conversionBase
-                resultValue
-            }
-            outConversion.priority < inConversion.priority -> {
-                resultValue *= outConversion.conversionBase
-                resultValue /= inConversion.conversionBase
-                resultValue
-            }
-            else -> {
-                resultValue
-            }
-        }
-    }
-
 
     private fun convertMethod(list: MutableList<Unit>): List<String> {
         val elementList = ArrayList<String>()

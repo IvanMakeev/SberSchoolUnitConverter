@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="horizontal"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent">
+
+    <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_weight="1">
+
+        <TextView android:layout_width="wrap_content"
+                  android:layout_height="wrap_content"
+                  android:id="@+id/out_convert_description"/>
+
+        <EditText android:layout_width="wrap_content"
+                  android:layout_height="wrap_content"
+                  android:id="@+id/out_convert_value"
+                  android:inputType="number"/>
+
+        <TextView android:layout_width="wrap_content"
+                  android:layout_height="wrap_content"
+                  android:text="@string/out"
+                  android:textSize="@dimen/default_text_size"
+                  style="@android:style/TextAppearance.Medium"/>
+
+        <Spinner android:layout_width="wrap_content"
+                 android:layout_height="wrap_content"
+                 android:id="@+id/out_convert_spinner"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_weight="1">
+
+        <TextView android:layout_width="wrap_content"
+                  android:layout_height="wrap_content"
+                  android:id="@+id/in_convert_description"/>
+
+        <EditText android:layout_width="wrap_content"
+                  android:layout_height="wrap_content"
+                  android:id="@+id/in_convert_value"/>
+
+        <TextView android:layout_width="wrap_content"
+                  android:layout_height="wrap_content"
+                  android:text="@string/in"
+                  android:textSize="@dimen/default_text_size"
+                  style="@android:style/TextAppearance.Medium"/>
+
+        <Spinner android:layout_width="wrap_content"
+                 android:layout_height="wrap_content"
+                 android:id="@+id/in_convert_spinner"/>
+
+    </LinearLayout>
+</LinearLayout>

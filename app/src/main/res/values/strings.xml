@@ -1,0 +1,24 @@
+<resources>
+    <string name="app_name">UnitConverter</string>
+    <string name="out">Из</string>
+    <string name="in">В</string>
+    <string name="area">Площадь</string>
+    <string name="weight">Масса</string>
+    <string name="kilometres">Километр</string>
+    <string name="metres">Метр</string>
+    <string name="centimetres">Сантиметр</string>
+    <string name="ton">Тонна</string>
+    <string name="centner">Центнер</string>
+    <string name="kilo">Килограмм</string>
+    <string name="gram">Грамм</string>
+
+    <string-array name="dimension">
+        <item>Энергия</item>
+        <item>Топливо</item>
+        <item>Длина</item>
+        <item>Масса</item>
+        <item>Мощность</item>
+        <item>Давление</item>
+        <item>Скорость</item>
+    </string-array>
+</resources>

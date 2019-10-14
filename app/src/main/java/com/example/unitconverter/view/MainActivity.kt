@@ -9,9 +9,7 @@ import com.example.unitconverter.adapter.DimensionAdapter
 import com.example.unitconverter.R
 import com.example.unitconverter.util.Conversion
 import com.example.unitconverter.util.MainItemClickListener
-import com.example.unitconverter.util.Unit
 import kotlinx.android.synthetic.main.activity_main.*
-import java.util.*
 
 class MainActivity : AppCompatActivity(), MainItemClickListener {
 

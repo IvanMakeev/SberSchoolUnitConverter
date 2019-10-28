@@ -1,35 +1,28 @@
 package com.example.unitconverter.view
 
-import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import androidx.recyclerview.widget.DividerItemDecoration
-import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.unitconverter.adapter.DimensionAdapter
 import com.example.unitconverter.R
-import com.example.unitconverter.util.Conversion
-import com.example.unitconverter.util.MainItemClickListener
-import kotlinx.android.synthetic.main.activity_main.*
 
-class MainActivity : AppCompatActivity(), MainItemClickListener {
-
-    companion object {
-        const val CONVERSION = "CONVERSION"
-    }
+class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        val linearLayout = LinearLayoutManager(this)
-        val adapter = DimensionAdapter(Conversion.values(), this)
-        recycler.layoutManager = linearLayout
-        recycler.adapter = adapter
-        recycler.addItemDecoration(DividerItemDecoration(this, DividerItemDecoration.VERTICAL))
+
+        if (savedInstanceState == null) {
+            supportFragmentManager
+                .beginTransaction()
+                .addToBackStack(null)
+                .replace(R.id.root_layout, MainFragment.newInstance())
+                .commit()
+        }
     }
 
-    override fun setMainClickListener(conversion: Conversion) {
-        val intent = Intent(this, ConverterActivity::class.java)
-        intent.putExtra(CONVERSION, conversion)
-        startActivity(intent)
+    override fun onBackPressed() {
+        super.onBackPressed()
+        if (supportFragmentManager.backStackEntryCount == 0) {
+            finish()
+        }
     }
 }

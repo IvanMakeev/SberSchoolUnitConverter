@@ -11,6 +11,7 @@
     <string name="centner">Центнер</string>
     <string name="kilo">Килограмм</string>
     <string name="gram">Грамм</string>
+    <string name="dimension">Единицы измерения</string>
 
     <string-array name="dimension">
         <item>Энергия</item>

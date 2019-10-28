@@ -21,14 +21,14 @@ class UtilsTest {
 
     @Test
     fun calculateOutToInTest() {
-        for (i in 0 until outConversion.size) {
+        for (i in outConversion.indices) {
             assertEquals(resultOutToIn[i], Utils.calculate(valuesForConvert[0], 0, outConversion[i]))
         }
     }
 
     @Test
     fun calculateInToOutTest() {
-        for (i in 0 until inConversion.size) {
+        for (i in inConversion.indices) {
             assertEquals(resultInToOut[i], Utils.calculate(valuesForConvert[1], inConversion[i], 3))
         }
     }

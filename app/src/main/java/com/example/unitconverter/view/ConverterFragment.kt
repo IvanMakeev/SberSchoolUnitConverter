@@ -3,20 +3,30 @@ package com.example.unitconverter.view
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
+import android.view.LayoutInflater
 import android.view.View
+import android.view.ViewGroup
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
-import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.Fragment
 import com.example.unitconverter.R
 import com.example.unitconverter.util.Conversion
 import com.example.unitconverter.util.Unit
 import com.example.unitconverter.util.Utils
-import kotlinx.android.synthetic.main.activity_converter.*
+import kotlinx.android.synthetic.main.fragment_converter.*
 
-class ConverterActivity : AppCompatActivity() {
+class ConverterFragment : Fragment() {
 
     companion object {
         const val CONVERSION = "CONVERSION"
+        fun newInstance(conversion: Conversion): ConverterFragment {
+
+            val args = Bundle()
+            args.putSerializable(CONVERSION, conversion)
+            val fragment = ConverterFragment()
+            fragment.arguments = args
+            return fragment
+        }
     }
 
     private lateinit var list: List<String>
@@ -25,22 +35,26 @@ class ConverterActivity : AppCompatActivity() {
     private var positionInConversion: Int = 0
     private var parseInt = 0
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_converter)
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+        return inflater.inflate(R.layout.fragment_converter, container, false)
+    }
 
-        conversion = intent.getSerializableExtra(CONVERSION) as Conversion
-        Utils.setConversion(conversion)
-        list = convertMethod(conversion.units)
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        arguments?.let {
+            conversion = it.getSerializable(CONVERSION) as Conversion
+            Utils.setConversion(conversion)
+            list = convertMethod(conversion.units)
+        }
         initSpinner()
         initEditText()
     }
 
     private fun initSpinner() {
-        out_convert_spinner.adapter = ArrayAdapter(this, android.R.layout.simple_list_item_1, list)
+        out_convert_spinner.adapter = ArrayAdapter(requireContext(), android.R.layout.simple_list_item_1, list)
         out_convert_spinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onNothingSelected(parent: AdapterView<*>?) {
-                TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+                //nothing to do
             }
 
             override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
@@ -50,10 +64,10 @@ class ConverterActivity : AppCompatActivity() {
             }
         }
 
-        in_convert_spinner.adapter = ArrayAdapter(this, android.R.layout.simple_list_item_1, list)
+        in_convert_spinner.adapter = ArrayAdapter(requireContext(), android.R.layout.simple_list_item_1, list)
         in_convert_spinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onNothingSelected(parent: AdapterView<*>?) {
-                TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+                //nothing to do
             }
 
             override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
@@ -92,8 +106,7 @@ class ConverterActivity : AppCompatActivity() {
                 parseInt,
                 positionOutConversion,
                 positionInConversion
-            )
-                .toString()
+            ).toString()
         )
     }
 

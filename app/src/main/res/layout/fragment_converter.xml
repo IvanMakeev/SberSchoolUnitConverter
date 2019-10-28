@@ -17,7 +17,8 @@
         <EditText android:layout_width="wrap_content"
                   android:layout_height="wrap_content"
                   android:id="@+id/out_convert_value"
-                  android:inputType="number"/>
+                  android:inputType="number"
+                  android:hint="@string/dimension"/>
 
         <TextView android:layout_width="wrap_content"
                   android:layout_height="wrap_content"
@@ -44,7 +45,8 @@
         <EditText android:layout_width="wrap_content"
                   android:layout_height="wrap_content"
                   android:id="@+id/in_convert_value"
-                  android:inputType="number"/>
+                  android:inputType="number"
+                  android:hint="@string/dimension"/>
 
         <TextView android:layout_width="wrap_content"
                   android:layout_height="wrap_content"

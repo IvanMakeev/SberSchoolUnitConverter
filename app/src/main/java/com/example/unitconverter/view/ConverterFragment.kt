@@ -19,8 +19,8 @@ class ConverterFragment : Fragment() {
 
     companion object {
         const val CONVERSION = "CONVERSION"
+        @JvmStatic
         fun newInstance(conversion: Conversion): ConverterFragment {
-
             val args = Bundle()
             args.putSerializable(CONVERSION, conversion)
             val fragment = ConverterFragment()
